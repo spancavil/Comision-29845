@@ -1,0 +1,10 @@
+https://developer.android.com/studio/run/emulator => Docu para correr emuladores virtuales desde la PC
+
+Instrucciones para Linux para instalar Native desde el CLI
+----------------------------------------------------------
+
+https://ubuntuhandbook.org/index.php/2022/03/install-jdk-18-ubuntu/ => Installing JDK por Linux
+https://mohitaunni.medium.com/react-native-cli-explained-for-beginners-4725a271c30d => React Native CLI
+
+Agregar un local.properties dentro de la carpeta de "android" con la dirección del sdk. En este caso:
+sdk.dir = /home/spancavil/Android/Sdk
