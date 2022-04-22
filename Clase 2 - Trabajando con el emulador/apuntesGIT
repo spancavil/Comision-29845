@@ -1,0 +1,31 @@
+Crear un repo en Github y linkearlo con un repo Git local
+---------------------------------------------------------
+
+1) Crear el repo en github (al principio estará vacio)
+2) Expo init <nombre-del-proyecto>. (template blank)
+3) Posicionarse en la carpeta del proyecto
+4) Set username y email:
+ git config --global user.name "MI_NOMBRE_DE_USUARIO_EN_GITHUB"
+ git config --global user.email "MY_NAME@example.com"
+
+5)Agrega el link de nuestro repo a "origin":
+git remote add origin <link-a-mi-proyecto-github>
+
+6) Cambiamos el nombre de la rama a main:
+git branch -M main
+
+7) Agrego los cambios que hice a mi repo:
+git add .
+
+8) Commiteo los cambios para que queden en forma permanente:
+git commit -m "Mensaje descriptivo de lo que hice"
+
+9) Subo mi repo a la rama main:
+git push -u origin main
+
+Y en los commits sucesivos:
+---------------------------
+
+10) Git add .
+11) Git commit -m "Mensaje descriptivo de lo que hice"
+12) Git push origin main
