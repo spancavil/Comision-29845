@@ -1,17 +1,31 @@
-import { Button, Text, TextInput, View, StyleSheet } from 'react-native'
+import { Text, TextInput, View, StyleSheet, TouchableOpacity } from 'react-native'
 import Item from '../Components/Item';
+import { useState } from 'react';
 import { colors } from '../Styles/Colors';
+import ButtonCustom from '../Components/Button';
 const Layout = () => {
+
+    const [input, setInput] = useState("")
+
+    console.log(input);
+
     return (
         <View style={styles.container}>
             <View style={styles.topContainer}>
                 <TextInput
                 style = {styles.input}
+                placeholder = "Add todo"
+                onChangeText={setInput}
+                value={input}
                 />
-                <Button title='Add todo'/>
+                <ButtonCustom/>
             </View>
             <View style={styles.itemList}>
                 <Item item = {{id: 1, todo: "Estudiar React Native"}}></Item>
+                <Item item = {{id: 2, todo: "Cerrar el mic"}}></Item>
+                <Item item = {{id: 3, todo: "Usar Youtube"}}></Item>
+                <Item item = {{id: 4, todo: "Usar Figma"}}></Item>
+                <Item item = {{id: 5, todo: "Ver tutorial del hindú"}}></Item>
             </View>
         </View>
     )
@@ -38,6 +52,9 @@ const styles = StyleSheet.create({
         width: 200,
         marginRight: 10,
         paddingHorizontal: 8,
+        fontSize: 18,
+        height: 35,
+        backgroundColor: colors.gray
     },
     itemList: {
         backgroundColor: colors.brown,
