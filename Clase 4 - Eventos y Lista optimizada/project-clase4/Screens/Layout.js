@@ -1,12 +1,14 @@
-import { Text, TextInput, View, StyleSheet, TouchableOpacity } from 'react-native'
-import Item from '../Components/Item';
+import { Text, TextInput, View, StyleSheet, TouchableOpacity, FlatList, Modal } from 'react-native'
+import TodoItem from '../Components/TodoItem';
 import { useState } from 'react';
 import { colors } from '../Styles/Colors';
 import ButtonCustom from '../Components/Button';
 const Layout = () => {
 
-    const [input, setInput] = useState("")
-    const [todoList, setTodoList] = useState([])
+    const [input, setInput] = useState("");
+    const [todoList, setTodoList] = useState([]);
+    const [modalVisible, setModalVisible] = useState(false);
+    const [idSelected, setIdSelected] = useState("");
 
     const handleAdd = () => {
         if (input !== ""){
@@ -16,6 +18,19 @@ const Layout = () => {
     }
 
     console.log(todoList);
+
+    const handleModal = (id) => {
+        setModalVisible(true);
+        setIdSelected(id);
+    }
+
+    const handleDelete = () => {
+        const todosFiltrados = todoList.filter(item => item.id !== idSelected);
+        setTodoList(todosFiltrados);
+        setModalVisible(false);
+    }
+
+    const renderTodo = ({item}) => <TodoItem onPress={handleModal} todo={item}></TodoItem>
 
     return (
         <View style={styles.container}>
@@ -34,12 +49,37 @@ const Layout = () => {
                 <Item item = {{id: 3, todo: "Usar Youtube"}}></Item>
                 <Item item = {{id: 4, todo: "Usar Figma"}}></Item>
                 <Item item = {{id: 5, todo: "Ver tutorial del hindú"}}></Item> */}
-                {todoList.length !== 0 ? 
-                todoList.map(item => <Item item ={item} key = {item.id}/>)
+                {todoList.length !== 0 ?
+                <FlatList
+                    data = {todoList}
+                    keyExtractor = {todo => todo.id}
+                    renderItem = {renderTodo}
+                /> 
                 :
                 <Text>No hay todos cargados</Text>
             }
             </View>
+            <Modal
+            animationType="fade"
+            transparent={true}
+            visible={modalVisible}
+            onRequestClose={() => {
+              setModalVisible(!modalVisible);
+            }}
+            >
+            <View style={styles.modalContainer}>
+                <View style={styles.content}>
+                    <TouchableOpacity onPress={()=>setModalVisible(false)}>
+                        <Text>
+                        X
+                        </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={handleDelete}>
+                        <Text>Eliminar todo</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
+            </Modal>
         </View>
     )
 }
@@ -52,12 +92,14 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'space-around',
         alignItems: 'center',
+        height: '100%',
     },
     topContainer:{
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
         padding: 10,
+        flex: 0.2,
     },
     input: {
         borderRadius: 8,
@@ -73,5 +115,16 @@ const styles = StyleSheet.create({
         backgroundColor: colors.brown,
         width: '95%',
         padding: 20,
+        flex: 0.8,
+    },
+    modalContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    content: {
+        height: 200,
+        width: 300,
+        backgroundColor: colors.gray
     }
 })

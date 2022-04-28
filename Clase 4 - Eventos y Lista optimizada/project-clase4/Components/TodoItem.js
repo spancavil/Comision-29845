@@ -1,16 +1,18 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { colors } from '../Styles/Colors'
 
-const Item = ({item}) => {
+const TodoItem = ({todo, onPress}) => {
   return (
     <View style = {styles.itemContainer}>
-      <Text style = {styles.text}>{item.todo}</Text>
+      <TouchableOpacity onPress={()=>onPress(todo.id)}>
+        <Text style = {styles.text}>{todo.todo}</Text>
+      </TouchableOpacity>
     </View>
   )
 }
 
-export default Item
+export default TodoItem
 
 const styles = StyleSheet.create({
     itemContainer: {
