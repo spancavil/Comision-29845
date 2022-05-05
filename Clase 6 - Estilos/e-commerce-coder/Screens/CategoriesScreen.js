@@ -15,7 +15,7 @@ const CategoriesScreen = () => {
         if (input === "") setCategoriesFilter(CATEGORIES)
         else {
             console.log("Se ejecuta el efecto");
-            categoriasFiltradas = categoriesFilter.filter(category => category.category.toLowerCase().includes(input.toLocaleLowerCase()))
+            categoriasFiltradas = categoriesFilter.filter(category => category.category.toLowerCase().includes(input.toLowerCase()))
             setCategoriesFilter(categoriasFiltradas)
         }
     }, [input])
