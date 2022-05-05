@@ -1,0 +1,3 @@
+https://github.com/vhpoet/react-native-styling-cheat-sheet
+https://reactnative.dev/docs/shadow-props
+https://ethercreative.github.io/react-native-shadow-generator/
