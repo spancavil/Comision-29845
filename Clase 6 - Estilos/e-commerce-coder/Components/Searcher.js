@@ -2,9 +2,9 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { colors } from '../Styles/colors'
 
-const Searcher = ({ children }) => {
+const Searcher = ({children, additionalStyles}) => {
     return (
-        <View style={styles.searcherContainer}>
+        <View style={{...styles.searcherContainer, ...additionalStyles}}>
             {children}
         </View>
     )
@@ -15,7 +15,6 @@ export default Searcher
 const styles = StyleSheet.create({
     searcherContainer: {
         flexDirection: 'row',
-        backgroundColor: colors.lightBlue,
         width: '90%',
         height: 120,
         marginVertical: 20,
