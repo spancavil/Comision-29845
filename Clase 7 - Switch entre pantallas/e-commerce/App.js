@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import CategoriesScreen from './Screens/CategoriesScreen';
 import ProductsScreen from './Screens/ProductsScreen';
+import {useFonts} from 'expo-font';
 
 export default function App() {
 
@@ -13,6 +14,17 @@ export default function App() {
   }
 
   console.log(categorySelected);
+
+  const [loaded] = useFonts({
+    Koulen: require('./assets/Fonts/Koulen/Koulen-Regular.ttf'),
+    LatoRegular: require('./assets/Fonts/Lato/Lato-Regular.ttf')
+  });
+  
+  if (!loaded) {
+    return <ActivityIndicator/>;
+  }
+
+  console.log(loaded);
 
   return (
     <View style={style.container}>
