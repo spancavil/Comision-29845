@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     searcherContainer: {
         flexDirection: 'row',
         width: '90%',
-        height: 120,
+        alignItems: 'center',
         marginVertical: 20,
         shadowColor: "#000",
         shadowOffset: {

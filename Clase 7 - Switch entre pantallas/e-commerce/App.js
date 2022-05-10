@@ -1,10 +1,11 @@
 import { StyleSheet, Text, View } from 'react-native';
 import CategoriesScreen from './Screens/CategoriesScreen';
+import ProductsScreen from './Screens/ProductsScreen';
 
 export default function App() {
   return (
     <View style={style.container}>
-      <CategoriesScreen/>
+      <ProductsScreen/>
     </View>
   );
 }

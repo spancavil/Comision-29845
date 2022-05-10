@@ -4,7 +4,8 @@ import Header from '../Components/Header'
 import Searcher from '../Components/Searcher'
 import { colors } from '../Styles/colors'
 import List from '../Components/List'
-import { CATEGORIES } from '../Data/categories'
+import { CATEGORIES } from '../Data/categories';
+import { Entypo } from '@expo/vector-icons';
 
 const CategoriesScreen = () => {
 
@@ -15,10 +16,14 @@ const CategoriesScreen = () => {
         if (input === "") setCategoriesFilter(CATEGORIES)
         else {
             console.log("Se ejecuta el efecto");
-            categoriasFiltradas = categoriesFilter.filter(category => category.category.toLowerCase().includes(input.toLowerCase()))
+            categoriasFiltradas = CATEGORIES.filter(category => category.category.toLowerCase().includes(input.toLowerCase()))
             setCategoriesFilter(categoriasFiltradas)
         }
     }, [input])
+
+    const handleErase = () => {
+        setInput("");
+    }
 
     return (
         <>
@@ -33,8 +38,8 @@ const CategoriesScreen = () => {
                         keyboardType="default"
                         style={styles.input}
                     />
-                    <TouchableOpacity>
-                        <Text>Find</Text>
+                    <TouchableOpacity onPress={handleErase}>
+                        <Entypo name="erase" size={30} color="black" />
                     </TouchableOpacity>
                 </Searcher>
                 <View style={styles.listContainer}>
@@ -62,5 +67,8 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         color: 'white',
         height: 50,
+    },
+    listContainer:{
+        flex: 1,
     }
 })
