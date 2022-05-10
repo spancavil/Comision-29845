@@ -17,6 +17,7 @@ const ProductsScreen = ({category = {id: 1, category: "Ropa"}}) => {
         setInput("")
     }
 
+    //Buscar productos según el input.
     useEffect(()=> {
         if(initialProducts.length !== 0){
             if (input === "") setProductsFiltered(initialProducts)
@@ -27,6 +28,7 @@ const ProductsScreen = ({category = {id: 1, category: "Ropa"}}) => {
         }
     }, [input, initialProducts])
 
+    //Realiza el filtro inicial de productos por categoría
     useEffect(()=>{
         const productosIniciales = PRODUCTS.filter(product => product.category === category.id)
         setInitialProducts(productosIniciales);
