@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Button, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react';
 import Searcher from '../Components/Searcher';
 import { Entypo } from '@expo/vector-icons';
@@ -7,7 +7,7 @@ import Header from '../Components/Header';
 import { colors } from '../Styles/colors';
 import List from '../Components/List';
 
-const ProductsScreen = ({category = {id: 1, category: "Ropa"}}) => {
+const ProductsScreen = ({category = {id: 1, category: "Ropa"}, handleCategory}) => {
 
     const [input, setInput] = useState("");
     const [initialProducts, setInitialProducts] = useState([])
@@ -56,7 +56,8 @@ const ProductsScreen = ({category = {id: 1, category: "Ropa"}}) => {
                     </TouchableOpacity>
                 </Searcher>
                 <View style={styles.listContainer}>
-                    <List data={productsFiltered} itemType ={"Producto"} />
+                    <List data={productsFiltered} itemType ={"Producto"} onPress={()=> {}}/>
+                    <Button title='Go back' onPress={()=>handleCategory(null)}/>
                 </View>
             </View>
 

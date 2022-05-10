@@ -1,16 +1,18 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native'
+import { FlatList, StyleSheet, Text, Touchable, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import CategoryItem from './CategoryItem'
 import ProductItem from './ProductItem'
 
-const List = ({ itemType = "category", data }) => {
+const List = ({ itemType = "category", data, onPress}) => {
 
     const fnRender = ({item}) => {
         return(
-            itemType === "category" ?
-            <CategoryItem category={item}/>
-            :
-            <ProductItem/>
+            <TouchableOpacity onPress={()=>onPress(item)}>
+                {itemType === "category" ?
+                <CategoryItem category={item}/>
+                :
+                <ProductItem product={item}/>}
+            </TouchableOpacity>
         )
     }
 

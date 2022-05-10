@@ -7,7 +7,7 @@ import List from '../Components/List'
 import { CATEGORIES } from '../Data/categories';
 import { Entypo } from '@expo/vector-icons';
 
-const CategoriesScreen = () => {
+const CategoriesScreen = ({handleCategory}) => {
 
     const [input, setInput] = useState("")
     const [categoriesFilter, setCategoriesFilter] = useState(CATEGORIES)
@@ -23,6 +23,11 @@ const CategoriesScreen = () => {
 
     const handleErase = () => {
         setInput("");
+    }
+
+    const handleSelectedCategory = (category) => {
+        // console.log(category);
+        handleCategory(category)
     }
 
     return (
@@ -43,7 +48,7 @@ const CategoriesScreen = () => {
                     </TouchableOpacity>
                 </Searcher>
                 <View style={styles.listContainer}>
-                    <List data={categoriesFilter} />
+                    <List data={categoriesFilter} onPress={handleSelectedCategory}/>
                 </View>
             </View>
         </>
