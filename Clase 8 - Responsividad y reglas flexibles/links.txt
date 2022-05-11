@@ -1,0 +1,9 @@
+Ver ejemplos de max-width y min-width en w3schools
+
+https://blog.logrocket.com/keyboardawarescrollview-keyboardavoidingview-react-native/ => Para que sirve los keyboardAvoiding
+
+Ojo el app.json que lockea el screen (borrar orientation)
+
+https://github.com/th3rdwave/react-native-safe-area-context => alternativa al safe area view de react native, soporte en android
+
+https://docs.expo.dev/distribution/publishing-websites/ => Publicación temporal en netlify o github pages
