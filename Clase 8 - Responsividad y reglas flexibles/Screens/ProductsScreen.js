@@ -7,7 +7,7 @@ import Header from '../Components/Header';
 import { colors } from '../Styles/colors';
 import List from '../Components/List';
 
-const ProductsScreen = ({category = {id: 1, category: "Ropa"}, handleCategory}) => {
+const ProductsScreen = ({category = {id: 1, category: "Ropa"}, handleProduct}) => {
 
     const [input, setInput] = useState("");
     const [initialProducts, setInitialProducts] = useState([])
@@ -34,8 +34,8 @@ const ProductsScreen = ({category = {id: 1, category: "Ropa"}, handleCategory}) 
         setInitialProducts(productosIniciales);
     }, [])
 
-    console.log(initialProducts);
-    console.log(productsFiltered);
+    // console.log(initialProducts);
+    // console.log(productsFiltered);
 
     return (
         <>
@@ -56,7 +56,7 @@ const ProductsScreen = ({category = {id: 1, category: "Ropa"}, handleCategory}) 
                     </TouchableOpacity>
                 </Searcher>
                 <View style={styles.listContainer}>
-                    <List data={productsFiltered} itemType ={"Producto"} onPress={()=> {}}/>
+                    <List data={productsFiltered} itemType ={"Producto"} onPress={handleProduct}/>
                     <Button title='Go back' onPress={()=>handleCategory(null)}/>
                 </View>
             </View>
