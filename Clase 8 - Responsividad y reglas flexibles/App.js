@@ -4,6 +4,7 @@ import CategoriesScreen from './Screens/CategoriesScreen';
 import ProductsScreen from './Screens/ProductsScreen';
 import {useFonts} from 'expo-font';
 import DetailScreen from './Screens/DetailScreen';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function App() {
 
@@ -36,16 +37,16 @@ export default function App() {
   console.log(productSelected);
 
   return (
-    <View style={style.container}>
+    <SafeAreaView style={{ flex: 1 }}>
       { !categorySelected ?
         <CategoriesScreen handleCategory = {handleCategory}/>
         :
         !productSelected ?
-        <ProductsScreen category={categorySelected} handleProduct={handleProduct}/>
+        <ProductsScreen category={categorySelected} handleProduct={handleProduct} handleCategory={handleCategory}/>
         :
-        <DetailScreen product={productSelected}/>
+        <DetailScreen product={productSelected} handleProduct={handleProduct} />
       }
-    </View>
+    </SafeAreaView>
   );
 }
 
