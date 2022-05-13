@@ -1,10 +1,14 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { Dimensions, StyleSheet, Text, View } from 'react-native'
+import React, { useEffect } from 'react'
 import { colors } from '../Styles/colors'
+import { size } from '../lib/DImensions'
 
 const Searcher = ({children, additionalStyles}) => {
+
+    
+
     return (
-        <View style={{...styles.searcherContainer, ...additionalStyles}}>
+        <View style={{...styles.searcherContainer, additionalStyles}}>
             {children}
         </View>
     )
@@ -12,10 +16,10 @@ const Searcher = ({children, additionalStyles}) => {
 
 export default Searcher
 
-const styles = {
+const styles = StyleSheet.create({
     searcherContainer: {
         flexDirection: 'row',
-        width: '90%',
+        width: size.orientation() === "horizontal" ? 300 : '90%',
         alignItems: 'center',
         marginVertical: 20,
         shadowColor: "#000",
@@ -28,4 +32,4 @@ const styles = {
         elevation: 12,
         borderRadius: 12,
     }
-}
+})

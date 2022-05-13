@@ -15,8 +15,7 @@ const CategoriesScreen = ({handleCategory}) => {
     useEffect(()=> {
         if (input === "") setCategoriesFilter(CATEGORIES)
         else {
-            console.log("Se ejecuta el efecto");
-            const categoriasFiltradas = CATEGORIES.filter(category => category.category.toLowerCase().includes(input.toLowerCase()))
+            categoriasFiltradas = CATEGORIES.filter(category => category.category.toLowerCase().includes(input.toLowerCase()))
             setCategoriesFilter(categoriasFiltradas)
         }
     }, [input])
@@ -26,7 +25,6 @@ const CategoriesScreen = ({handleCategory}) => {
     }
 
     const handleSelectedCategory = (category) => {
-        // console.log(category);
         handleCategory(category)
     }
 
