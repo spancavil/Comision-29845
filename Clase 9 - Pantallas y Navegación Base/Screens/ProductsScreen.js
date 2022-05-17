@@ -42,6 +42,10 @@ const ProductsScreen = ({ category = { id: 1, category: "Ropa" }, navigation }) 
         navigation.navigate("Detail")
     }
 
+    const handleBack = () => {
+        navigation.goBack();
+    }
+
     return (
         <KeyboardAvoidingView
             behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -66,7 +70,7 @@ const ProductsScreen = ({ category = { id: 1, category: "Ropa" }, navigation }) 
                     </Searcher>
                     <View style={styles.listContainer}>
                         <List data={productsFiltered} itemType={"Producto"} onPress={handleDetailProduct} />
-                        {/* <Button title='Go back' onPress={() => handleCategory(null)} /> */}
+                        <Button title="Go back" onPress={handleBack} />
                     </View>
                 </View>
             </TouchableWithoutFeedback>

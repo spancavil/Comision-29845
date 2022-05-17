@@ -8,8 +8,9 @@ const DetailScreen = ({ product =
         category: 4,
         description: "Product 8",
         price: 80.63,
-        image: "https://picsum.photos/200/300"
-    }
+        image: "https://picsum.photos/200/300",
+    },
+    navigation
 }) => {
 
     const { height, width } = useWindowDimensions();
@@ -20,6 +21,11 @@ const DetailScreen = ({ product =
     }, [height, width])
 
     // console.log(orientation);
+
+    const handleBack = () => {
+        navigation.goBack();
+    }
+
 
     return (
         <>
@@ -32,7 +38,7 @@ const DetailScreen = ({ product =
                 />
                 <Text>{product.description}</Text>
                 <Text>$ {product.price}</Text>
-                {/* <Button onPress={()=> handleProduct(null)}titlDetaile='Go back'/> */}
+                <Button onPress={handleBack} title ='Go back'/>
             </View>
         </>
     )

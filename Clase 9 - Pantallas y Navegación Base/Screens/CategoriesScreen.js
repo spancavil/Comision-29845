@@ -1,4 +1,4 @@
-import { StyleSheet, TextInput, TouchableOpacity, View } from 'react-native'
+import { Button, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Header from '../Components/Header'
 import Searcher from '../Components/Searcher'
@@ -16,7 +16,7 @@ const CategoriesScreen = ({navigation}) => {
         if (input === "") setCategoriesFilter(CATEGORIES)
         else {
             console.log("Se ejecuta el efecto");
-            categoriasFiltradas = CATEGORIES.filter(category => category.category.toLowerCase().includes(input.toLowerCase()))
+            const categoriasFiltradas = CATEGORIES.filter(category => category.category.toLowerCase().includes(input.toLowerCase()))
             setCategoriesFilter(categoriasFiltradas)
         }
     }, [input])
@@ -28,7 +28,7 @@ const CategoriesScreen = ({navigation}) => {
     const handleSelectedCategory = (category) => {
         // console.log(category);
         // handleCategory(category)
-        navigation.navigate("Products")
+        navigation.push("Products")
 
     }
 

@@ -26,7 +26,7 @@ const CategoryItem = ({category}) => {
 
 export default CategoryItem
 
-const styles = StyleSheet.create({
+const styles = {
   container: {
     width: 150,
     height: 150,
@@ -40,4 +40,4 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: 'LatoRegular'
   }
-})
+}
