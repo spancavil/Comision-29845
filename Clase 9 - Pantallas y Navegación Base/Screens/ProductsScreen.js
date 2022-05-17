@@ -7,7 +7,7 @@ import Header from '../Components/Header';
 import { colors } from '../Styles/colors';
 import List from '../Components/List';
 
-const ProductsScreen = ({ category = { id: 1, category: "Ropa" }, handleProduct, handleCategory }) => {
+const ProductsScreen = ({ category = { id: 1, category: "Ropa" }, navigation }) => {
 
     const [input, setInput] = useState("");
     const [initialProducts, setInitialProducts] = useState([])
@@ -37,6 +37,11 @@ const ProductsScreen = ({ category = { id: 1, category: "Ropa" }, handleProduct,
     // console.log(initialProducts);
     // console.log(productsFiltered);
 
+    const handleDetailProduct = () => {
+        console.log("Se navegará hacia el detail");
+        navigation.navigate("Detail")
+    }
+
     return (
         <KeyboardAvoidingView
             behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -60,8 +65,8 @@ const ProductsScreen = ({ category = { id: 1, category: "Ropa" }, handleProduct,
                         </TouchableOpacity>
                     </Searcher>
                     <View style={styles.listContainer}>
-                        <List data={productsFiltered} itemType={"Producto"} onPress={handleProduct} />
-                        <Button title='Go back' onPress={() => handleCategory(null)} />
+                        <List data={productsFiltered} itemType={"Producto"} onPress={handleDetailProduct} />
+                        {/* <Button title='Go back' onPress={() => handleCategory(null)} /> */}
                     </View>
                 </View>
             </TouchableWithoutFeedback>

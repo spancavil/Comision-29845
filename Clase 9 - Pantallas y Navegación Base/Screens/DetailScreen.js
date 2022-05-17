@@ -2,21 +2,29 @@ import { StyleSheet, Text, View, Image, Dimensions, Button, useWindowDimensions 
 import React, { useEffect, useState } from 'react'
 import Header from '../Components/Header'
 
-const DetailScreen = ({ product, handleProduct }) => {
+const DetailScreen = ({ product =
+    {
+        id: 8,
+        category: 4,
+        description: "Product 8",
+        price: 80.63,
+        image: "https://picsum.photos/200/300"
+    }
+}) => {
 
-    const {height, width} = useWindowDimensions();
+    const { height, width } = useWindowDimensions();
     const [orientation, setOrientation] = useState("portrait")
 
-    useEffect(()=> {
-        setOrientation( height > width ? "portrait" : "landscape")
+    useEffect(() => {
+        setOrientation(height > width ? "portrait" : "landscape")
     }, [height, width])
 
     // console.log(orientation);
 
     return (
         <>
-            <Header title={product.description}/>
-            <View style={ orientation === "portrait" ? styles.containerVertical: styles.containerHorizontal}>
+            <Header title={product.description} />
+            <View style={orientation === "portrait" ? styles.containerVertical : styles.containerHorizontal}>
                 <Image
                     source={{ uri: product.image }}
                     style={styles.image}
@@ -24,7 +32,7 @@ const DetailScreen = ({ product, handleProduct }) => {
                 />
                 <Text>{product.description}</Text>
                 <Text>$ {product.price}</Text>
-                <Button onPress={()=> handleProduct(null)}title='Go back'/>
+                {/* <Button onPress={()=> handleProduct(null)}titlDetaile='Go back'/> */}
             </View>
         </>
     )
