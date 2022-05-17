@@ -5,10 +5,11 @@ import ProductsScreen from './Screens/ProductsScreen';
 import {useFonts} from 'expo-font';
 import DetailScreen from './Screens/DetailScreen';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import MainNavigator from './Navigation/Shop';
 
 export default function App() {
 
-  const [categorySelected, setCategorySelected] = useState(null);
+/*   const [categorySelected, setCategorySelected] = useState(null);
   const [productSelected, setProductSelected] = useState(null);
 
   const handleCategory = (category) => {
@@ -19,7 +20,7 @@ export default function App() {
   const handleProduct = (product) => {
     // console.log(category);
     setProductSelected(product)
-  }
+  } */
 
   // console.log(categorySelected);
   // console.log(productSelected);
@@ -34,26 +35,10 @@ export default function App() {
   }
 
   console.log(loaded);
-  console.log(productSelected);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      { !categorySelected ?
-        <CategoriesScreen handleCategory = {handleCategory}/>
-        :
-        !productSelected ?
-        <ProductsScreen category={categorySelected} handleProduct={handleProduct} handleCategory={handleCategory}/>
-        :
-        <DetailScreen product={productSelected} handleProduct={handleProduct} />
-      }
+      <MainNavigator/>
     </SafeAreaView>
   );
 }
-
-const style = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    alignItems: 'center',
-  }
-})
