@@ -1,0 +1,5 @@
+https://reactnavigation.org/docs/params => Cómo pasar params entre Stacks
+
+https://reactnavigation.org/docs/headers/ => Configurando headers en nuestra app
+
+https://reactnavigation.org/docs/native-stack-navigator/#options => Options para el header
