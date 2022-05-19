@@ -29,7 +29,6 @@ const DetailScreen = ({ product =
 
     return (
         <>
-            <Header title={product.description} />
             <View style={orientation === "portrait" ? styles.containerVertical : styles.containerHorizontal}>
                 <Image
                     source={{ uri: product.image }}

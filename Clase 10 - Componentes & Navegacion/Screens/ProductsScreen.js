@@ -51,7 +51,6 @@ const ProductsScreen = ({ category = { id: 1, category: "Ropa" }, navigation }) 
             behavior={Platform.OS === "ios" ? "padding" : "height"}
             style={styles.keyboardAvoid}
         >
-            <Header title={category.category} />
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
                     <Searcher additionalStyles={{
