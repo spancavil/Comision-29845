@@ -7,11 +7,13 @@ import Header from '../Components/Header';
 import { colors } from '../Styles/colors';
 import List from '../Components/List';
 
-const ProductsScreen = ({ category = { id: 1, category: "Ropa" }, navigation }) => {
+const ProductsScreen = ({ category = { id: 1, category: "Ropa" }, navigation, route }) => {
 
     const [input, setInput] = useState("");
     const [initialProducts, setInitialProducts] = useState([])
     const [productsFiltered, setProductsFiltered] = useState([])
+
+    const {categoryId} = route.params
 
     const handleErase = () => {
         setInput("")
@@ -30,16 +32,19 @@ const ProductsScreen = ({ category = { id: 1, category: "Ropa" }, navigation }) 
 
     //Realiza el filtro inicial de productos por categoría
     useEffect(() => {
-        const productosIniciales = PRODUCTS.filter(product => product.category === category.id)
+        const productosIniciales = PRODUCTS.filter(product => product.category === categoryId)
         setInitialProducts(productosIniciales);
-    }, [])
+    }, [categoryId])
 
     // console.log(initialProducts);
     // console.log(productsFiltered);
 
-    const handleDetailProduct = () => {
-        console.log("Se navegará hacia el detail");
-        navigation.navigate("Detail")
+    const handleDetailProduct = (product) => {
+        console.log(product);
+        navigation.navigate("Detail",{
+            productId: product.id,
+            productTitle: product.description
+        })
     }
 
     const handleBack = () => {

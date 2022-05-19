@@ -1,19 +1,27 @@
 import { StyleSheet, Text, View, Image, Dimensions, Button, useWindowDimensions } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Header from '../Components/Header'
+import { PRODUCTS } from '../Data/products'
 
-const DetailScreen = ({ product =
-    {
-        id: 8,
-        category: 4,
-        description: "Product 8",
-        price: 80.63,
-        image: "https://picsum.photos/200/300",
-    },
+const DetailScreen = ({ 
+    route,
     navigation
 }) => {
 
+    const {productId} = route.params
+
+    console.log(productId);
+
+    // const product = {
+    //     id: 1,
+    //     category: 1,
+    //     description: "Product 1",
+    //     price: 29.99,
+    //     image: "https://picsum.photos/200/300",
+    // }
+
     const { height, width } = useWindowDimensions();
+    const [product, setProduct] = useState(null)
     const [orientation, setOrientation] = useState("portrait")
 
     useEffect(() => {
@@ -26,20 +34,25 @@ const DetailScreen = ({ product =
         navigation.goBack();
     }
 
+    useEffect(()=> {
+        const productSelected = PRODUCTS.find(product => product.id === productId);
+        console.log(productSelected);
+        setProduct(productSelected);
+    }, [productId])
 
     return (
-        <>
+        product && (
             <View style={orientation === "portrait" ? styles.containerVertical : styles.containerHorizontal}>
                 <Image
-                    source={{ uri: product.image }}
+                    source={{ uri: product?.image }}
                     style={styles.image}
                     resizeMode="cover"
                 />
-                <Text>{product.description}</Text>
-                <Text>$ {product.price}</Text>
+                <Text>{product?.description}</Text>
+                <Text>$ {product?.price}</Text>
                 <Button onPress={handleBack} title ='Go back'/>
             </View>
-        </>
+        )
     )
 }
 
