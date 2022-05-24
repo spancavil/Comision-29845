@@ -1,16 +1,28 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { colors } from '../../../Styles/colors'
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
+import ShopNavigator from '../../Stacks/Shop'
+import CartStack from '../../Stacks/Cart'
 
-const index = () => {
+const BottomTabs = createBottomTabNavigator()
+
+const TabNavigatorLogged = () => {
   return (
-    <View>
-      <Text>index</Text>
-    </View>
+    <BottomTabs.Navigator>
+      <BottomTabs.Screen 
+        name = "ShopTab"
+        component={ShopNavigator}
+      />
+      <BottomTabs.Screen
+        name = "CartTab"
+        component={CartStack}
+      />
+    </BottomTabs.Navigator>
   )
 }
 
-export default index
+export default TabNavigatorLogged
 
 const styles = StyleSheet.create({
     tabBar: {
