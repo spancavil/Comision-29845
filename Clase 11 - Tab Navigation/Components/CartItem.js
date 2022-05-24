@@ -1,11 +1,24 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, Touchable, TouchableOpacity, View } from 'react-native'
 import React from 'react'
-import { colors } from '../Styles/colors'
+import { colors } from '../Styles/colors';
+import {Ionicons} from '@expo/vector-icons';
 
 const CartItem = ({item, onDelete}) => {
   return (
-    <View>
-      <Text>CartItem</Text>
+    <View style={styles.item}>
+      <View>
+        <Text style={styles.header}>{item.description}</Text>
+      </View>
+      <View style={styles.detail}>
+        <View>
+          <Text style={styles.text}>Cantidad: {item.quantity}</Text>
+          <Text style={styles.text}>${item.price}</Text>
+        </View>
+        <TouchableOpacity onPress={()=> onDelete(item.id)}>
+          <Ionicons name="trash" size={24}></Ionicons>
+        </TouchableOpacity>
+      </View>
+
     </View>
   )
 }
@@ -21,7 +34,7 @@ const styles = StyleSheet.create({
     },
     header: {
         fontSize: 18,
-        fontFamily: 'LatonRegular',
+        fontFamily: 'LatoRegular',
     },
     detail: {
         flex: 1,
@@ -32,6 +45,6 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 16,
-        fontFamily: 'LatonRegular',
+        fontFamily: 'LatoRegular',
     }
 })
