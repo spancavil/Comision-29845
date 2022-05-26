@@ -4,19 +4,23 @@ import Header from '../Components/Header'
 import Searcher from '../Components/Searcher'
 import { colors } from '../Styles/colors'
 import List from '../Components/List'
-import { CATEGORIES } from '../Data/categories';
 import { Entypo } from '@expo/vector-icons';
+import { useSelector } from 'react-redux'
+import { CATEGORIES } from '../Data/categories'
 
 const CategoriesScreen = ({navigation}) => {
 
     const [input, setInput] = useState("")
-    const [categoriesFilter, setCategoriesFilter] = useState(CATEGORIES)
+    const [categoriesFilter, setCategoriesFilter] = useState()
+
+    const {categories} = useSelector(state => state.categories.value)
+    console.log(categories);
 
     useEffect(()=> {
-        if (input === "") setCategoriesFilter(CATEGORIES)
+        if (input === "") setCategoriesFilter(categories)
         else {
             console.log("Se ejecuta el efecto");
-            const categoriasFiltradas = CATEGORIES.filter(category => category.category.toLowerCase().includes(input.toLowerCase()))
+            const categoriasFiltradas = categories.filter(category => category.category.toLowerCase().includes(input.toLowerCase()))
             setCategoriesFilter(categoriasFiltradas)
         }
     }, [input])
