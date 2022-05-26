@@ -13,11 +13,18 @@ export const productsSlice = createSlice({
     name: "products",
     initialState: initialState,
     reducers: {
-
+        setProductsByCategory: (state, action) => {
+            const productsFiltered = state.value.products.filter(product => product.category === action.payload )
+            state.value.productsByCategory = productsFiltered;
+        },
+        setProductSelected: (state, action) => {
+            const productSelected = state.value.productsByCategory.find(product => product.id === action.payload)
+            state.value.productSelected = productSelected
+        }
     }
 })
 
 // Action creators are generated for each case reducer function
-// export const {} = counterSlice.actions
+export const {setProductSelected, setProductsByCategory} = productsSlice.actions
 
 export default productsSlice.reducer

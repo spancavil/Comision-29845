@@ -5,8 +5,10 @@ import Searcher from '../Components/Searcher'
 import { colors } from '../Styles/colors'
 import List from '../Components/List'
 import { Entypo } from '@expo/vector-icons';
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { CATEGORIES } from '../Data/categories'
+import { selectCategory } from '../features/categories'
+import { setProductsByCategory } from '../features/products'
 
 const CategoriesScreen = ({navigation}) => {
 
@@ -14,7 +16,8 @@ const CategoriesScreen = ({navigation}) => {
     const [categoriesFilter, setCategoriesFilter] = useState()
 
     const {categories} = useSelector(state => state.categories.value)
-    console.log(categories);
+    const dispatch = useDispatch();
+    // console.log(categories);
 
     useEffect(()=> {
         if (input === "") setCategoriesFilter(categories)
@@ -33,6 +36,9 @@ const CategoriesScreen = ({navigation}) => {
         // console.log(category);
         // handleCategory(category)
         // console.log(category);
+        dispatch(setProductsByCategory(category.id))
+        dispatch(selectCategory(category.id));
+
         navigation.push("Products", {
             categoryId: category.id,
             categoryTitle: category.category,

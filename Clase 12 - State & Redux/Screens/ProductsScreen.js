@@ -6,12 +6,19 @@ import { PRODUCTS } from '../Data/products';
 import Header from '../Components/Header';
 import { colors } from '../Styles/colors';
 import List from '../Components/List';
+import { useDispatch, useSelector } from 'react-redux';
+import { setProductSelected } from '../features/products';
 
 const ProductsScreen = ({ category = { id: 1, category: "Ropa" }, navigation, route }) => {
 
     const [input, setInput] = useState("");
-    const [initialProducts, setInitialProducts] = useState([])
+    // const [initialProducts, setInitialProducts] = useState([])
     const [productsFiltered, setProductsFiltered] = useState([])
+    const {products} = useSelector(state => state.products.value)
+    const {productsByCategory} = useSelector(state => state.products.value)
+    const dispatch = useDispatch()
+
+    console.log(products);
 
     const {categoryId} = route.params
 
@@ -21,29 +28,30 @@ const ProductsScreen = ({ category = { id: 1, category: "Ropa" }, navigation, ro
 
     //Buscar productos según el input.
     useEffect(() => {
-        if (initialProducts.length !== 0) {
-            if (input === "") setProductsFiltered(initialProducts)
+        if (productsByCategory.length !== 0) {
+            if (input === "") setProductsFiltered(productsByCategory)
             else {
-                const productosFiltrados = initialProducts.filter(product => product.description.toLowerCase().includes(input.toLowerCase()))
+                const productosFiltrados = productsByCategory.filter(product => product.description.toLowerCase().includes(input.toLowerCase()))
                 setProductsFiltered(productosFiltrados)
             }
         }
-    }, [input, initialProducts])
+    }, [input, productsByCategory])
 
     //Realiza el filtro inicial de productos por categoría
-    useEffect(() => {
-        const productosIniciales = PRODUCTS.filter(product => product.category === categoryId)
-        setInitialProducts(productosIniciales);
-    }, [categoryId])
+    // useEffect(() => {
+    //     const productosIniciales = products.filter(product => product.category === categoryId)
+    //     setInitialProducts(productosIniciales);
+    // }, [categoryId])
 
     // console.log(initialProducts);
     // console.log(productsFiltered);
 
     const handleDetailProduct = (product) => {
         console.log(product);
-        navigation.navigate("Detail",{
-            productId: product.id,
-            productTitle: product.description
+        dispatch(setProductSelected(product.id))
+
+        navigation.navigate("Detail", {
+            categoryTitle: category.category
         })
     }
 

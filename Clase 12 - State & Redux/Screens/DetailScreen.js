@@ -2,15 +2,16 @@ import { StyleSheet, Text, View, Image, Dimensions, Button, useWindowDimensions 
 import React, { useEffect, useState } from 'react'
 import Header from '../Components/Header'
 import { PRODUCTS } from '../Data/products'
+import { useSelector } from 'react-redux'
 
 const DetailScreen = ({ 
     route,
     navigation
 }) => {
 
-    const {productId} = route.params
-
-    console.log(productId);
+    // const {productId} = route.params
+    const {productSelected} = useSelector(state => state.products.value)
+    // console.log(productId);
 
     // const product = {
     //     id: 1,
@@ -21,7 +22,7 @@ const DetailScreen = ({
     // }
 
     const { height, width } = useWindowDimensions();
-    const [product, setProduct] = useState(null)
+    // const [product, setProduct] = useState(null)
     const [orientation, setOrientation] = useState("portrait")
 
     useEffect(() => {
@@ -34,22 +35,22 @@ const DetailScreen = ({
         navigation.goBack();
     }
 
-    useEffect(()=> {
-        const productSelected = PRODUCTS.find(product => product.id === productId);
-        // console.log(productSelected);
-        setProduct(productSelected);
-    }, [productId])
+    // useEffect(()=> {
+    //     const productSelected = PRODUCTS.find(product => product.id === productId);
+    //     // console.log(productSelected);
+    //     setProduct(productSelected);
+    // }, [productId])
 
     return (
-        product && (
+        productSelected && (
             <View style={orientation === "portrait" ? styles.containerVertical : styles.containerHorizontal}>
                 <Image
-                    source={{ uri: product.image }}
+                    source={{ uri: productSelected.image }}
                     style={styles.image}
                     resizeMode="cover"
                 />
-                <Text>{product.description}</Text>
-                <Text>$ {product.price}</Text>
+                <Text>{productSelected.description}</Text>
+                <Text>$ {productSelected.price}</Text>
                 <Button onPress={handleBack} title ='Go back'/>
             </View>
         )
