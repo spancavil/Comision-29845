@@ -1,0 +1,5 @@
+https://lenguajejs.com/javascript/peticiones-http/ajax/ => Peticiones HTTP
+https://lenguajejs.com/javascript/peticiones-http/fetch/ => Método fetch
+
+https://firebase.google.com/docs/database/rest/start => Realtime database peticiones rest
+https://blog.logrocket.com/using-redux-toolkits-createasyncthunk/ => Redux async thunk
