@@ -2,15 +2,18 @@ import { StyleSheet, Text, View, Image, Dimensions, Button, useWindowDimensions 
 import React, { useEffect, useState } from 'react'
 import Header from '../Components/Header'
 import { PRODUCTS } from '../Data/products'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { addItem } from '../features/cart'
 
-const DetailScreen = ({ 
+const DetailScreen = ({
     route,
     navigation
 }) => {
 
+    const dispatch = useDispatch();
+
     // const {productId} = route.params
-    const {productSelected} = useSelector(state => state.products.value)
+    const { productSelected } = useSelector(state => state.products.value)
     // console.log(productId);
 
     // const product = {
@@ -41,6 +44,10 @@ const DetailScreen = ({
     //     setProduct(productSelected);
     // }, [productId])
 
+    const handleAdd = (id) => {
+        // dispatch(addItem({id: id}))
+    }
+
     return (
         productSelected && (
             <View style={orientation === "portrait" ? styles.containerVertical : styles.containerHorizontal}>
@@ -51,7 +58,8 @@ const DetailScreen = ({
                 />
                 <Text>{productSelected.description}</Text>
                 <Text>$ {productSelected.price}</Text>
-                <Button onPress={handleBack} title ='Go back'/>
+                <Button onPress={handleBack} title='Go back' />
+                <Button onPress={()=>handleAdd(productSelected.id)} title="Add to cart" />
             </View>
         )
     )
