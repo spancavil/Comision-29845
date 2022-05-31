@@ -45,7 +45,7 @@ const DetailScreen = ({
     // }, [productId])
 
     const handleAdd = (id) => {
-        // dispatch(addItem({id: id}))
+        dispatch(addItem({id: id}))
     }
 
     return (
