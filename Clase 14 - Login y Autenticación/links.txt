@@ -1,0 +1,4 @@
+https://firebase.google.com/docs/reference/rest/auth?authuser=0 => Auth REST
+
+https://reactnative.dev/docs/textinput => textinput
+https://joi.dev/api/?v=17.6.0#stringemailoptions => Joi es una libreria empleada para validar datos

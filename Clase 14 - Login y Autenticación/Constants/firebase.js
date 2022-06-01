@@ -1,0 +1,1 @@
+export const DB_URL = 'https://rn-coder-29845-default-rtdb.firebaseio.com/'
