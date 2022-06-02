@@ -1,17 +1,34 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { Button, StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 import { colors } from '../Styles/colors'
+import Input from '../Components/Input'
+import { useDispatch } from 'react-redux'
+import { signUp } from '../features/auth'
 
 const LoginScreen = () => {
 
     const [registroVista, setRegistroVista] = useState(false)
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const dispatch = useDispatch()
 
+    const handleSignup = () => {
+        if (password === confirmPassword){
+            console.log("Se registra!");
+            dispatch(signUp({email: email, password: password}))
+        }
+    } 
+ 
     return (
         <View style={styles.container}>
             <View style={styles.content}>
                 <Text style={styles.title}>{registroVista ? "Registro": "Login"}</Text>
+                <Input label="Email" password={false} onChange={setEmail} value ={email}/>
+                <Input label="Password" password={true} onChange={setPassword} value ={password}/>
+                <Input label="Confirm password" password={true} onChange={setConfirmPassword} value ={confirmPassword}/>
+                <Button title="Signup" onPress={handleSignup}/>
             </View>
-            <Text>LoginScreen</Text>
         </View>
     )
 }
@@ -26,6 +43,7 @@ const styles = StyleSheet.create({
         backgroundColor: colors.beige
     },
     content: {
+        backgroundColor: colors.darkBlue,
         padding: 20,
         justifyContent: 'center',
         borderRadius: 10,
@@ -40,7 +58,8 @@ const styles = StyleSheet.create({
     },
     title: {
         fontFamily: 'LatoRegular',
-        fontSize: 20,
+        fontSize: 24,
+        textAlign: 'center'
     },
 
 })
