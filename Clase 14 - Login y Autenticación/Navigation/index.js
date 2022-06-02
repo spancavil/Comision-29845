@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import TabNavigatorLogged from './Tabs/UserLogged'
-import LoginScreen from '../Screens/LoginScreen'
+import LoginScreen from '../Screens/AuthScreen'
 import AuthStack from './Stacks/Auth'
 import { useSelector } from 'react-redux'
 
@@ -13,7 +13,7 @@ const MainNavigator = () => {
 
   return (
     <NavigationContainer>
-      {false ?
+      {user.email ?
         <TabNavigatorLogged />
         :
         <AuthStack />

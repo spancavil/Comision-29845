@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native'
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { colors } from '../../../Styles/colors';
-import LoginScreen from '../../../Screens/LoginScreen';
+import AuthScreen from '../../../Screens/AuthScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,7 +27,7 @@ const AuthStack = () => {
       >
         <Stack.Screen
           name= "auth"
-          component={LoginScreen}
+          component={AuthScreen}
           options={{
             title: "Auth"
           }}

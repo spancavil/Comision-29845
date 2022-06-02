@@ -28,7 +28,7 @@ export const signUp = createAsyncThunk(
                })
            });
            const data = await res.json()
-           console.log(data); 
+           console.log(data);
            return data
         } catch (error) {
             return rejectWithValue('Opps there seems to be an error')
@@ -47,7 +47,12 @@ export const authSlice = createSlice({
             state.value.loading = true
         },
         [signUp.fulfilled]: (state, {payload}) => {
+            console.log(payload)
+            if (payload.error) {
+                state.value.error = payload.error.message
+            }
             state.value.loading = false
+            
             state.value.user.userId = payload.localId
             state.value.user.email = payload.email
             state.value.user.token = payload.idToken
