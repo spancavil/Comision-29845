@@ -7,6 +7,7 @@ import CartStack from '../../Stacks/Cart';
 import { Entypo } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import OrdersStack from '../../Stacks/Orders'
+import LocationStack from '../../Stacks/Locations'
 
 const BottomTabs = createBottomTabNavigator()
 
@@ -61,8 +62,8 @@ const TabNavigatorLogged = () => {
           }
         }}
       />
-      {/* <BottomTabs.Screen
-        name="Locations"
+      <BottomTabs.Screen
+        name="LocationTab"
         component={LocationStack}
         options={{
           tabBarIcon: ({ focused }) => {
@@ -74,7 +75,7 @@ const TabNavigatorLogged = () => {
             )
           }
         }}
-      /> */}
+      />
     </BottomTabs.Navigator>
   )
 }

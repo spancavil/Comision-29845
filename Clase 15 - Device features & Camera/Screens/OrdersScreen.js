@@ -2,7 +2,7 @@ import { FlatList, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect } from 'react'
 import OrderItem from '../Components/OrderItem'
 import { ORDERS } from '../Data/order'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { getOrders } from '../features/orders'
 
 const renderItem = ({ item }) => (
@@ -13,6 +13,10 @@ const renderItem = ({ item }) => (
 
 
 const OrdersScreen = () => {
+
+    const {orders} = useSelector(state => state.orders.value)
+
+    console.log(orders);
 
     const dispatch = useDispatch()
 
