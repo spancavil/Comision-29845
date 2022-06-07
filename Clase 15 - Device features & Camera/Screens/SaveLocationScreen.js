@@ -3,11 +3,15 @@ import React from 'react'
 import { colors } from '../Styles/colors';
 import * as ImagePicker from 'expo-image-picker';
 import renamePathAndMove from '../Utils/renamePath';
+import { useDispatch } from 'react-redux';
+import { addLocation } from '../features/locations';
 
 
 const SaveLocationScreen = () => {
   const [title, setTitle] = React.useState("")
   const [picture, setPicture] = React.useState("")
+
+  const dispatch = useDispatch();
 
   const handlePickLibrary = async () => {
     // No permissions request is necessary for launching the image library
@@ -51,9 +55,10 @@ const SaveLocationScreen = () => {
   }
 
   const handleConfirm = async () => {
-    const path = await renamePathAndMove(picture);
-    console.log(path);
-
+    // const path = await renamePathAndMove(picture);
+    // console.log(path);
+    dispatch(addLocation(title))
+    setTitle("");
   }
 
   return (
