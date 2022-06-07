@@ -1,4 +1,4 @@
-import { StyleSheet, Text, Touchable, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, Text, Touchable, TouchableOpacity, View, Image} from 'react-native'
 import React from 'react'
 import { colors } from '../Styles/colors'
 
@@ -6,7 +6,7 @@ const PlaceItem = ({onSelect, title, image, address}) => {
   return (
     <TouchableOpacity
         onPress={onSelect}
-        style={styles.pressItem}
+        style={styles.placeItem}
     >
         <Image 
             style={styles.image}

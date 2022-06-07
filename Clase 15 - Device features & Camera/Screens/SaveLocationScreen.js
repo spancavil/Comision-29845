@@ -48,8 +48,9 @@ const SaveLocationScreen = () => {
     const image = await ImagePicker.launchCameraAsync({
       allowsEditing: true,
       aspect: [16, 9],
-      quality: 0.8,
+      quality: 1,
     })
+
     console.log(image);
     setPicture(image.uri);
   }
@@ -57,8 +58,9 @@ const SaveLocationScreen = () => {
   const handleConfirm = async () => {
     // const path = await renamePathAndMove(picture);
     // console.log(path);
-    dispatch(addLocation(title))
+    dispatch(addLocation({title, picture, id: Date.now()}))
     setTitle("");
+    setPicture("");
   }
 
   return (
