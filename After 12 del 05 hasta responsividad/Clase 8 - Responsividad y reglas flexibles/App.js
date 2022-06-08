@@ -33,8 +33,8 @@ export default function App() {
     return <ActivityIndicator/>;
   }
 
-  console.log(loaded);
-  console.log(productSelected);
+  // console.log(loaded);
+  // console.log(productSelected);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
