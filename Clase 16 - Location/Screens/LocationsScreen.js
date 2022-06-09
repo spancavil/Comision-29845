@@ -9,7 +9,7 @@ const renderItem = ({item}) => {
       onSelect={() => {}}
       title = {item.title}
       image = {item.picture}
-      address = "Avenida siempreviva 1234"
+      address = {item.address}
     />
   )
 }
