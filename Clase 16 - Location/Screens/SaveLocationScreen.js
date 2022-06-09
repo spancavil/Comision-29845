@@ -63,7 +63,7 @@ const SaveLocationScreen = ({navigation}) => {
     setPicture("");
   }
 
-  const handleLocation = async () => {
+  const handleLocation = () => {
     navigation.navigate("Get-location")
   }
 
@@ -84,7 +84,7 @@ const SaveLocationScreen = ({navigation}) => {
       }
       <Button title='Tomar una foto' onPress={handleTakePicture} />
       <Button title="Seleccionar de la galería" onPress={handlePickLibrary} />
-      {/* <Button title="Seleccionar una ubicación" onPress={handleLocation} /> */}
+      <Button title="Obtener ubicación" onPress={handleLocation} />
       <Button title="Confirmar" onPress={handleConfirm}></Button>
     </View>
   )

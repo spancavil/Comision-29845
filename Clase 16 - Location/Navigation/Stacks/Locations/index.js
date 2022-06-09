@@ -55,7 +55,7 @@ const LocationStack = () => {
         }
       />
 
-      {/* <Stack.Screen
+      <Stack.Screen
         name="Get-location"
         component={GetLocationScreen}
         options={
@@ -63,7 +63,7 @@ const LocationStack = () => {
             title: "Obtener ubicación"
           }
         }
-      /> */}
+      />
 
     </Stack.Navigator>
   )

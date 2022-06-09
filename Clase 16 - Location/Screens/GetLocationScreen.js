@@ -14,6 +14,7 @@ const GetLocationScreen = () => {
 
   //Efecto para traer la ubicación apenas renderiza
   useEffect(() => {
+    //IIFE
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== 'granted') {
@@ -22,12 +23,13 @@ const GetLocationScreen = () => {
       }
       let location = await Location.getCurrentPositionAsync({});
 
-      // console.log(location);
+      console.log(location);
       setLocation({
         lat: location.coords.latitude,
         lng: location.coords.longitude,
       })
     })();
+
   }, []);
 
   //Efecto para traer el mapa y luego hacer un reverse geoCode a partir de las coordenadas
