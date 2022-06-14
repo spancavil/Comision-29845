@@ -21,8 +21,8 @@ export const addLocationDb = createAsyncThunk(
                 location.address,
             )
             console.log("Add location db result:");
-            console.log(result);
-            return "Record succesfully"
+            console.log(result.insertId);
+            return `Record succesfully row with id: ${result.insertId}`
         } catch (error) {
             console.log(error.message);
             return asyncThunk.rejectWithValue("Error at writing address on db")

@@ -10,12 +10,12 @@ import { Provider } from 'react-redux'
 
 import { init } from './db';
 
-/* init()
+init()
 .then(()=> {console.log('Db initialized');})
 .catch((err)=> {
   console.log('Error loading db');
   console.log(err.message);
-}) */
+})
 
 export default function App() {
 

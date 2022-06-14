@@ -64,7 +64,7 @@ const SaveLocationScreen = ({navigation, route}) => {
     // console.log(path);
     let id = Date.now()
     dispatch(addLocation({title, picture, id, address:params?.address}))
-    // dispatch(addLocationDb({title, picture, id, address:params?.address}))
+    dispatch(addLocationDb({title, picture, id, address:params?.address}))
     setTitle("");
     setPicture("");
   }
