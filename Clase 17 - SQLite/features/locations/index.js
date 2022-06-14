@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { fetchAddress, insertAddress } from "../../db";
+import { deleteAddress, fetchAddress, insertAddress } from "../../db";
 
 const initialState = {
     value: {
@@ -7,6 +7,7 @@ const initialState = {
         rowId: '',
         loading: false,
         error: null,
+        responseDb: '',
     }
 }
 
@@ -45,12 +46,32 @@ export const getLocations = createAsyncThunk(
     }
 )
 
+export const removeLocationDb = createAsyncThunk(
+    'location/addToDb',
+    async (location, asyncThunk) => {
+        try {
+            const result = await deleteAddress(
+                location.id,
+            )
+            console.log("Remove location db result:");
+            console.log(result);
+            return `Item with id: ${location.id} removed successfully`
+        } catch (error) {
+            console.log(error.message);
+            return asyncThunk.rejectWithValue(`Error at remove item with id: ${location.id}`)
+        }
+    }
+)
+
 const locationSlice = createSlice({
     name: "locations",
     initialState,
     reducers: {
         addLocation: (state, {payload}) => {
             state.value.locations.push(payload)
+        },
+        removeLocation: (state, {payload}) => {
+            state.value.locations = state.value.locations.filter(location => location.id !== payload.id)
         }
     },
     extraReducers: {
@@ -78,10 +99,22 @@ const locationSlice = createSlice({
         [getLocations.rejected]: (state, {payload}) => {
             state.value.loading = false
             state.value.error = payload
+        },
+        [removeLocationDb.pending]: (state) => {
+            state.value.loading = true
+        },
+        [removeLocationDb.fulfilled]: (state, {payload}) => {
+            state.value.loading = false
+            state.value.error = null
+            state.value.responseDb = payload
+        },
+        [removeLocationDb.rejected]: (state, {payload}) => {
+            state.value.loading = false
+            state.value.error = payload
         }
 
     }
 })
 
-export const {addLocation} = locationSlice.actions
+export const {addLocation, removeLocation} = locationSlice.actions
 export default locationSlice.reducer;
